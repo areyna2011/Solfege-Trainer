@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Practice solfège and audiation with 17 four-beat patterns. A classroom music tool from Music with Mr. Reyna.">
+<title>Solfège Trainer | Music with Mr. Reyna</title>
+<link rel="icon" href="assets/logo.png">
+<link rel="stylesheet" href="styles.css">
+<script src="patterns.js" defer></script>
+<script src="app.js" defer></script>
+</head>
+<body>
+<main class="app" id="app">
+  <header class="brand-header">
+    <img class="brand-logo" src="assets/logo.png" alt="Music with Mr. Reyna">
+    <div class="title-wrap"><h1>Solfège Trainer</h1><p class="subtitle">Read it. Hear it. Sing it.</p></div>
+    <div class="header-spacer" aria-hidden="true"></div>
+  </header>
+  <div class="toolbar">
+    <div class="segmented" role="group" aria-label="Mode">
+      <button data-mode="practice" aria-pressed="true">Practice</button>
+      <button data-mode="audiation" aria-pressed="false">Audiation</button>
+    </div>
+    <button class="quiet" id="fullscreen">Full screen</button>
+  </div>
+  <section class="score-panel" aria-label="Solfège pattern">
+    <div class="score-meta"><span id="pattern-label">Pattern 1 <span class="muted">/ 17</span></span><span class="pill">4 beats · do re mi sol la</span></div>
+    <div class="score-stage" id="score-stage" aria-busy="false">
+      <img id="score" src="assets/patterns/01-none.png" alt="Pattern 1 musical notation, no syllables">
+      <div class="stage-message" id="stage-message" hidden><h2 id="stage-heading"></h2><p id="stage-copy"></p></div>
+    </div>
+    <div class="lesson-status" role="status" aria-live="polite" id="lesson-status">Read the pattern, then sing.</div>
+    <div class="actions">
+      <button class="ghost" id="starting">♫ <span>Starting pitch</span></button>
+      <button class="ghost" id="full">▶ <span>Play pattern</span></button>
+      <button class="reveal" id="reveal-syllables">Reveal syllables</button>
+      <button class="primary" id="next">Next pattern</button>
+    </div>
+    <p class="error" id="error" role="alert" hidden></p>
+  </section>
+  <section class="support-panel" aria-label="Lesson controls">
+    <div class="support-group"><span class="control-label">Syllable support</span><div class="segmented" role="group" aria-label="Syllable support">
+      <button data-support="none" aria-pressed="true">None</button><button data-support="first" aria-pressed="false">First</button><button data-support="all" aria-pressed="false">All</button>
+    </div></div>
+    <div class="audiation-controls" id="audiation-controls" hidden>
+      <label for="seconds">Show for <input id="seconds" type="number" min="1" max="30" step="1" value="5"> seconds</label>
+      <button class="primary" id="start-round">Start audiation</button>
+      <button class="reveal" id="reveal-pattern" hidden>Reveal pattern</button>
+    </div>
+    <p id="support-hint">Reveal adds support to this pattern.</p>
+  </section>
+  <section class="music-panel" aria-labelledby="music-title">
+    <div class="music-heading"><h2 id="music-title">Background music</h2><p>Solfège practice track</p></div>
+    <audio id="background-music" controls preload="none" aria-label="Solfège practice backing track" src="assets/audio/solfege-practice-track.mp3"></audio>
+    <button class="quiet" id="repeat-music" aria-pressed="false">Repeat</button>
+    <p class="error" id="music-error" role="alert" hidden>The backing track could not be loaded. Check that the local MP3 is included with the app.</p>
+  </section>
+  <details class="settings" id="settings">
+    <summary><span>Teacher settings</span><span id="selection-summary">17 patterns · Random</span></summary>
+    <div class="settings-content">
+      <div class="settings-toolbar"><div class="support-group"><label class="control-label" for="order">Pattern order</label><select id="order"><option value="random">Random</option><option value="sequential">Sequential</option></select></div>
+      <div class="selection-actions"><button class="quiet" id="select-all">Select all</button><button class="quiet" id="clear-all">Clear all</button></div></div>
+      <p class="settings-hint">Choose the patterns for your class. Random skips the previous pattern whenever more than one is selected.</p>
+      <div class="pattern-grid" id="pattern-grid"></div>
+    </div>
+  </details>
+  <nav class="site-links" aria-label="More Music with Mr. Reyna links">
+    <a href="https://www.austinreyna.com/" target="_blank" rel="noopener noreferrer">◎ www.austinreyna.com</a>
+    <a href="https://www.youtube.com/@musicwithmrreyna" target="_blank" rel="noopener noreferrer">▶ YouTube @musicwithmrreyna</a>
+    <a class="other-apps" href="https://www.austinreyna.com/web-apps" target="_blank" rel="noopener noreferrer">View Other Apps</a>
+  </nav>
+  <noscript><p>Please enable JavaScript to use the trainer.</p></noscript>
+</main>
+</body>
+</html>
